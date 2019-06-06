@@ -52,16 +52,11 @@ _API = None
 try:
     import gssapi
 
-    if hasattr(gssapi, "__title__") and gssapi.__title__ == "python-gssapi":
-        # old, unmaintained python-gssapi package
-        _API = "MIT"  # keep this for compatibility
-        GSS_EXCEPTIONS = (gssapi.GSSException,)
-    else:
-        _API = "PYTHON-GSSAPI-NEW"
-        GSS_EXCEPTIONS = (
-            gssapi.exceptions.GeneralError,
-            gssapi.raw.misc.GSSError,
-        )
+    _API = "PYTHON-GSSAPI-NEW"
+    GSS_EXCEPTIONS = (
+        gssapi.exceptions.GeneralError,
+        gssapi.raw.misc.GSSError,
+    )
 except (ImportError, OSError):
     try:
         import pywintypes
